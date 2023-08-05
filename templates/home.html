@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva Tatuajes</title>
-=======
-    <title>Tatuajes</title>
->>>>>>> refs/remotes/origin/main
 </head>
 <body>
     <header>
@@ -16,7 +12,6 @@
                 <li><a href="/">Inicio</a></li>
 
                 {% if user.is_authenticated %}
-<<<<<<< HEAD
                     <h1>Bienvenido, {{ user.nombres }}</h1>
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
@@ -26,17 +21,6 @@
                     <h1>Bienvenido, por favor inicia sesión o regístrate</h1>
                     <a href="{% url 'login' %}">Iniciar sesión</a>
                     <a href="{% url 'register' %}">Registrarse</a>
-=======
-                    <li class=>¡Bienvenido<span> {{user.username}}!</span></li>
-                    <li><a href="/logout" class="sub">Salir</a></li>
-                    {% if user.is_staff%}
-                    <h1 style="color: aquamarine;">SOY ADMIN</h1>
-                    <!-- a -->
-                    {% endif %}
-                {% else %}
-                    <li><a href="/register" class="sub">Registrarse</a></li>
-                    <li><a href="/login" class="sub">Ingresar</a></li>
->>>>>>> refs/remotes/origin/main
                 {% endif %}
 
             </ul>
