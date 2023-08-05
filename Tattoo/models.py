@@ -16,6 +16,8 @@ class Tatuador(models.Model):
         return txt.format(self.nombre, self.apellido)
 
 class ImagenTattoos(models.Model):
+    titulo =models.CharField(max_length=50)
+    descripcion =models.CharField(max_length=50)
     tatuador =models.ForeignKey(Tatuador,null=False,on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='imagenes/')
 
