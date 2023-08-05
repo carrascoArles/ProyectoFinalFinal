@@ -1,4 +1,49 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Tatuajes</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+
+                {% if user.is_authenticated %}
+                    <li class=>¡Bienvenido<span> {{user.username}}!</span></li>
+                    <li><a href="/logout" class="sub">Salir</a></li>
+                    {% if user.is_staff%}
+                    <h1 style="color: aquamarine;">SOY ADMIN</h1>
+                    <!-- a -->
+                    {% endif %}
+                {% else %}
+                    <li><a href="/register" class="sub">Registrarse</a></li>
+                    <li><a href="/login" class="sub">Ingresar</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}
+    <div id="tatuajes" class="tatu-container">
+        {% for tatuador in tatuadores %}
+            <div class="tatuaje">
+                <h1>{{ tatuador.nombre }}</h1>
+                <p>Ejemplos de trabajo:</p>
+                <div class="img-container">
+                    {% for tatuaje in tatuajes %}
+                        {% if tatuaje.tatuador == tatuador %}
+                            <img src="{{ tatuaje.imagen }}" alt="Tatuaje de {{tatuador.nombre}}" class="tatuaje-imagen">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p>¿Interesado?</p>
+                <a href="{% url 'pedir_cita' tatuador.dni %}""><button>Pedir cita</button></a>
+            </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
     
+</body>
 </html>
