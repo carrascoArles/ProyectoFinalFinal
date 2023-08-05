@@ -21,7 +21,7 @@ def pedir_cita(request, tatuador_dni):
     envio_exitoso = "" 
     if request.method == 'POST':
         user = request.user
-        asunto = request.POST['asunto']
+        asunto = f"[{user}] {request.POST['asunto']}"
         mensaje = request.POST['mensaje']
         destinatario = tatuador.correo
         envio_exitoso = "El correo se ha enviado exitosamente."
