@@ -7,6 +7,6 @@ from Tattoo import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path ('', include('Tattoo.urls')),
-    path('tatuador/',views.Tatuador, name='assag'),
+    path('tatuador/',views.crear_tatuador, name='assag'),
     path('imagentatu/',views.Imagenes, name='assag'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

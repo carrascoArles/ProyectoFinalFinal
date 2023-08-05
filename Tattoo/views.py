@@ -33,7 +33,7 @@ def pedir_cita(request, tatuador_dni):
     }
     return render(request, 'pedir_cita.html', context)
 
-def Tatuador(request):
+def crear_tatuador(request):
     if request.method == 'POST':
         tattooForm = TattooForm(request.POST, request.FILES)
         if tattooForm.is_valid():
@@ -56,7 +56,7 @@ def Imagenes(request):
 
     return render(request, 'tatuador.html', {'form1': tattooForm})
 
-def Usuario(request):
+def crear_usuario(request):
 
     sub_Form = Usuario()
 
