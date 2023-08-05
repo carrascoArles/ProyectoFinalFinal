@@ -1,7 +1,7 @@
-from django.shortcuts import render
 from .models import ImagenTattoos,Tatuador
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect,get_object_or_404
 from django.core.mail import send_mail
+from .forms import *
 
 def vista_tatuajes(request):
     tatuadores = Tatuador.objects.all()
@@ -32,3 +32,21 @@ def pedir_cita(request, tatuador_dni):
         'envio_exitoso': envio_exitoso
     }
     return render(request, 'pedir_cita.html', context)
+
+def Tatuador(request):
+
+    tattooForm = TattooForm()
+
+    return render(request, 'tatuador.html', {'form': tattooForm})
+
+def Imagenes(request):
+
+    sub_Form = ImagenForm()
+
+    return render(request, 'imagen.html', {'form1': sub_Form})
+
+def Usuario(request):
+
+    sub_Form = Usuario()
+
+    return render(request, 'usuario.html', {'form2': sub_Form})
