@@ -4,7 +4,6 @@
     <title>Contactarse con {{tatuador.nombre}}</title>
 </head>
 <body>
-
     <h1>Contactarse con {{ tatuador.nombre }}</h1>
 
     <a href="{{tatuador.ig}}">Instagram</a>
@@ -13,6 +12,9 @@
     <p>Yape:</p>
     <img src="{{ tatuador.yape.url }}" alt="Foto de yape">
     <p>Enviar correo</p>
+    {% if envio_exitoso %}
+        <p style="color: green;font-size: 30px;">{{ envio_exitoso }}</p>
+    {% endif %}
     <p>Usuario: {{ user.username }}</p>
 
     <form method="post">
