@@ -17,9 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from Tattoo import views
+from Authentication.views import homeView, loginView, registerView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', homeView, name='home'),
+    path('login/', loginView, name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    path('register/', registerView, name='register'),
     path('tatuador/',views.Tatuador, name='assag'),
     path('imagentatu/',views.Imagenes, name='assag'),
 ]
