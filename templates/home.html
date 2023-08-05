@@ -34,12 +34,12 @@
                 <div class="img-container">
                     {% for tatuaje in tatuajes %}
                         {% if tatuaje.tatuador == tatuador %}
-                            <img src="{{ tatuaje.imagen }}" alt="Tatuaje de ejemplo" class="tatuaje-imagen">
+                            <img src="{{ tatuaje.imagen }}" alt="Tatuaje de {{tatuador.nombre}}" class="tatuaje-imagen">
                         {% endif %}
                     {% endfor %}
                 </div>
                 <p>¿Interesado?</p>
-               <button>Pedir cita</button>
+                <a href="{% url 'pedir_cita' tatuador.dni %}""><button>Pedir cita</button></a>
             </div>
         {% endfor %}
     </div>
