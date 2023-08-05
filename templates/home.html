@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tatuajes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Tatuajes</title>
 </head>
 <body>
     <header>
@@ -10,15 +12,15 @@
                 <li><a href="/">Inicio</a></li>
 
                 {% if user.is_authenticated %}
-                    <li class=>¡Bienvenido<span> {{user.username}}!</span></li>
-                    <li><a href="/logout" class="sub">Salir</a></li>
-                    {% if user.is_staff%}
-                    <h1 style="color: aquamarine;">SOY ADMIN</h1>
-                    <!-- a -->
-                    {% endif %}
+                    <h1>Bienvenido, {{ user.nombres }}</h1>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Cerrar sesión</button>
+                    </form>
                 {% else %}
-                    <li><a href="/register" class="sub">Registrarse</a></li>
-                    <li><a href="/login" class="sub">Ingresar</a></li>
+                    <h1>Bienvenido, por favor inicia sesión o regístrate</h1>
+                    <a href="{% url 'login' %}">Iniciar sesión</a>
+                    <a href="{% url 'register' %}">Registrarse</a>
                 {% endif %}
 
             </ul>
@@ -39,7 +41,7 @@
                     {% endfor %}
                 </div>
                 <p>¿Interesado?</p>
-                <a href="{% url 'pedir_cita' tatuador.dni %}""><button>Pedir cita</button></a>
+                <a href="{% url 'pedir_cita' tatuador.dni %}"><button>Pedir cita</button></a>
             </div>
         {% endfor %}
     </div>
