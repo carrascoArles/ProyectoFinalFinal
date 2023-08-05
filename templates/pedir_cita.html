@@ -1,4 +1,29 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Contactarse con {{tatuador.nombre}}</title>
+</head>
+<body>
 
+    <h1>Contactarse con {{ tatuador.nombre }}</h1>
+
+    <a href="{{tatuador.ig}}">Instagram</a>
+    <p>Correo: {{tatuador.correo}}</p>
+
+    <p>Yape:</p>
+    <img src="{{ tatuador.yape.url }}" alt="Foto de yape">
+    <p>Enviar correo</p>
+    <p>Usuario: {{ user.username }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="asunto">Asunto:</label>
+        <input type="text" id="asunto" name="asunto" required><br><br>
+        
+        <label for="mensaje">Mensaje:</label><br>
+        <textarea id="mensaje" name="mensaje" rows="4" cols="50" required></textarea><br><br>
+        
+        <button type="submit">Enviar Correo</button>
+    </form>
+</body>
 </html>

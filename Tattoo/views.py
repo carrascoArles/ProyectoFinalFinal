@@ -18,7 +18,14 @@ def vista_tatuajes(request):
     return render(request, 'home.html', context)
 def pedir_cita(request, tatuador_dni):
     tatuador = get_object_or_404(Tatuador, dni=tatuador_dni)
+    
+    if request.method == 'POST':
+        user = request.user
+        asunto = request.POST['asunto']
+        mensaje = request.POST['mensaje']
+        destinatario = tatuador.correo
 
+        send_mail(asunto, mensaje, 'correo empresa', [destinatario])
     context = {
         'tatuador': tatuador,
     }
