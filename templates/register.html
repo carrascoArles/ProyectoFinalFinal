@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <title>Register</title>
-  </head>
-  <body>
+</head>
+<body>
     <h1>Register</h1>
     <form method="post">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Register</button>
+        {% csrf_token %}
+        <div>
+            {{ form.as_p }}
+        </div>
+        <button type="submit">Register</button>
     </form>
 
     {% if alert_message %}
-    <div class="alert alert-danger" role="alert">{{ alert_message }}</div>
+    <div class="alert alert-danger" role="alert">
+        {{ alert_message }}
+    </div>
     {% endif %}
-  </body>
+</body>
 </html>
