@@ -22,7 +22,7 @@
         <h1>Tatuadores</h1>
         {% for tatuador in tatuadores %}
             <div class="tatuaje">
-                <h1>{{ tatuador.nombre }} <a href="{% url 'eliminar_tatuador' tatuador_dni=tatuador.dni %}">Eliminar</a></h1>
+                <h1>{{ tatuador.nombre }} <a href="{% url 'eliminar_tatuador' tatuador.dni %}">Eliminar</a></h1>
 
             </div>
         {% endfor %}

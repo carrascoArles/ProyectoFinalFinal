@@ -19,8 +19,15 @@ def vista_tatuajes(request):
 
 def vista_tatuadores(request):
     tatuadores = Tatuador.objects.all()
+    tatuajes = ImagenTattoos.objects.all()
+    if  request.user.is_authenticated and request.user.is_staff:
+        is_staff = True
+    else:
+        is_staff = False
     context ={
       'tatuadores': tatuadores,
+      'tatuajes': tatuajes,
+      'is_staff': is_staff,
     }
     return render(request, 'admin.html', context)
 
@@ -71,19 +78,19 @@ def crear_usuario(request):
     return render(request, 'usuario.html', {'form2': sub_Form})
 
 def eliminar_tatuador(request, tatuador_dni):
-    tatuador = get_object_or_404(Tatuador, dni=tatuador_dni)
+    tatuadores = get_object_or_404(Tatuador, dni=tatuador_dni)
 
     if request.method == 'POST':
-        tatuador.delete()
-        return redirect('admin')
+        tatuadores.delete()
+        return redirect('http://127.0.0.1:8000/vistaadmin/')
     context = {
-        'tatuador': tatuador,
+        'tatuadores': tatuadores,
     }
-    return render(request, 'confirmar_eliminacion.html', context)
+    return render(request, 'confirmacion_eliminacion.html', context)
 
 def administrar_tatuadores(request):
-    destinos = Tatuador.objects.all()
+    tatuadores = Tatuador.objects.all()
     context ={
-      'destinos': destinos,
+      'tatuadores': tatuadores,
     }
     return render(request, 'admin.html', context)

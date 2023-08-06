@@ -4,8 +4,8 @@
     <title>Confirmar eliminación</title>
 </head>
 <body>
-    <h1>Confirmar eliminación del tatuador: {{ tatuador.nombre }} {{ tatuador.apellido }}</h1>
-    <p>¿Estás seguro de que deseas eliminar a {{ tatuador.nombre }} {{ tatuador.apellido }}?</p>
+    <h1>Confirmar eliminación del tatuador: {{ tatuadores.nombre }} {{ tatuadores.apellido }}</h1>
+    <p>¿Estás seguro de que deseas eliminar a {{ tatuadores.nombre }} {{ tatuadores.apellido }}?</p>
 
     <form method="post">
         {% csrf_token %}
