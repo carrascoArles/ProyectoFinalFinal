@@ -17,6 +17,11 @@
                         {% csrf_token %}
                         <button type="submit">Cerrar sesión</button>
                     </form>
+                    {% if user.is_staff %} 
+                        <p>¡Eres administrador!</p>
+                        <a href="{% url 'vistaadmin' %}">vista de admin</a>
+                        
+                    {% endif %}
                 {% else %}
                     <h1>Bienvenido, por favor inicia sesión o regístrate</h1>
                     <a href="{% url 'login' %}">Iniciar sesión</a>
