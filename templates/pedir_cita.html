@@ -18,7 +18,7 @@
     {% if envio_exitoso %}
         <p style="color: green;font-size: 30px;">{{ envio_exitoso }}</p>
     {% endif %}
-    <p>Usuario: {{ user.username }}</p>
+    <p>Usuario: {{ user.nombres }}</p>
 
     <form method="post">
         {% csrf_token %}
