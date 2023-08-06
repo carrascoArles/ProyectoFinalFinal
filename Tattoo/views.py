@@ -16,6 +16,14 @@ def vista_tatuajes(request):
       'is_staff': is_staff,
     }
     return render(request, 'home.html', context)
+
+def vista_tatuadores(request):
+    tatuadores = Tatuador.objects.all()
+    context ={
+      'tatuadores': tatuadores,
+    }
+    return render(request, 'admin.html', context)
+
 def pedir_cita(request, tatuador_dni):
     tatuador = get_object_or_404(Tatuador, dni=tatuador_dni)
     envio_exitoso = "" 
@@ -38,7 +46,7 @@ def crear_tatuador(request):
         tattooForm = TattooForm(request.POST, request.FILES)
         if tattooForm.is_valid():
             tattooForm.save()
-            return redirect('http://127.0.0.1:8000/imagentatu/')
+            return redirect('http://127.0.0.1:8000/creartatuador/')
     else:
         tattooForm = TattooForm()
 
@@ -50,14 +58,32 @@ def Imagenes(request):
         tattooForm = ImagenForm(request.POST, request.FILES)
         if tattooForm.is_valid():
             tattooForm.save()
-            return redirect('http://127.0.0.1:8000/tatuador/')
+            return redirect('http://127.0.0.1:8000/imagentatu/')
     else:
         tattooForm = ImagenForm()
 
-    return render(request, 'tatuador.html', {'form1': tattooForm})
+    return render(request, 'imagen.html', {'form1': tattooForm})
 
 def crear_usuario(request):
 
     sub_Form = Usuario()
 
     return render(request, 'usuario.html', {'form2': sub_Form})
+
+def eliminar_tatuador(request, tatuador_dni):
+    tatuador = get_object_or_404(Tatuador, dni=tatuador_dni)
+
+    if request.method == 'POST':
+        tatuador.delete()
+        return redirect('admin')
+    context = {
+        'tatuador': tatuador,
+    }
+    return render(request, 'confirmar_eliminacion.html', context)
+
+def administrar_tatuadores(request):
+    destinos = Tatuador.objects.all()
+    context ={
+      'destinos': destinos,
+    }
+    return render(request, 'admin.html', context)

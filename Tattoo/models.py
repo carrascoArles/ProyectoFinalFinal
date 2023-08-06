@@ -16,10 +16,11 @@ class Tatuador(models.Model):
         return txt.format(self.nombre, self.apellido)
 
 class ImagenTattoos(models.Model):
-    titulo =models.CharField(max_length=50)
-    descripcion =models.CharField(max_length=50)
+    
     tatuador =models.ForeignKey(Tatuador,null=False,on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='imagenes/')
+    titulo =models.CharField(max_length=50, default='titulo predeterminada')
+    descripcion = models.CharField(max_length=100, default='Descripción predeterminada')
 
     def __str__(self):
         txt ="Imagen N: {0} de {1}"
