@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Tatuajes</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                    <h1>Vista de Administrador</h1>
+                    <a href="{% url 'creartatuador' %}">Agregar Tatuador</a>
+                    <a href="{% url 'imagentatu' %}">Agregar Trabajo</a>
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}
+    <div id="tatuadores" class="tatu-container">
+        <h1>Tatuadores</h1>
+        {% for tatuador in tatuadores %}
+            <div class="tatuaje">
+                <h1>{{ tatuador.nombre }} <a href="{% url 'eliminar_tatuador' tatuador_dni=tatuador.dni %}">Eliminar</a></h1>
+
+            </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
+    
+</body>
+</html>

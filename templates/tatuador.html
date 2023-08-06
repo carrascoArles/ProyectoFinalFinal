@@ -9,6 +9,9 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Guardar</button>
+        <a href="{% url 'vistaadmin' %}">
+            <button type="button">Volver</button>
+        </a>
     </form>
 </body>
 </html>
