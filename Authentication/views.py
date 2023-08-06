@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import LoginForm, RegisterForm
 from .models import UserData
+from Tattoo import views
 
 def homeView(request):
     return render(request, 'home.html', {'user': request.user})
@@ -16,7 +17,7 @@ def loginView(request):
             user = UserData.objects.authenticate_user(dni=dni, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect(views.vista_tatuajes)
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
@@ -34,7 +35,7 @@ def registerView(request):
 
             if validate_dni(dni, nombres, apellidos):
                 UserData.objects.create(dni=dni, nombres=nombres, apellidos=apellidos, telefono=telefono, email=email, rol='Cliente', password=password)
-                return redirect('home')
+                return redirect(views.vista_tatuajes)
             else:
                 alert_message = "Los datos ingresados no coinciden con el DNI. Verifícalos e intenta nuevamente."
                 return render(request, 'register.html', {'form': form, 'alert_message': alert_message})
