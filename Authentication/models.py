@@ -15,9 +15,9 @@ class UserManager(BaseUserManager):
             telefono=telefono,
             email=email,
             rol=rol,
+            password=password,
             **extra_fields
         )
-        user.set_password(password)
         user.save(using=self._db)
         return user
 
