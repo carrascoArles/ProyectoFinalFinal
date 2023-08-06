@@ -2,7 +2,7 @@ import requests
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import LoginForm, RegisterForm
-from .models import userData
+from .models import UserData
 
 def homeView(request):
     return render(request, 'home.html', {'user': request.user})
@@ -13,7 +13,7 @@ def loginView(request):
         if form.is_valid():
             dni = form.cleaned_data.get('dni')
             password = form.cleaned_data.get('contraseña')
-            user = userData.objects.authenticate_user(dni=dni, password=password)
+            user = UserData.objects.authenticate_user(dni=dni, password=password)
             if user is not None:
                 login(request, user)
                 return redirect('home')
@@ -33,7 +33,7 @@ def registerView(request):
             password = form.cleaned_data['contraseña'] 
 
             if validate_dni(dni, nombres, apellidos):
-                userData.objects.create(dni=dni, nombres=nombres, apellidos=apellidos, telefono=telefono, email=email, rol='Cliente', password=password)
+                UserData.objects.create(dni=dni, nombres=nombres, apellidos=apellidos, telefono=telefono, email=email, rol='Cliente', password=password)
                 return redirect('home')
             else:
                 alert_message = "Los datos ingresados no coinciden con el DNI. Verifícalos e intenta nuevamente."

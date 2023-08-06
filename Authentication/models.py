@@ -21,6 +21,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
     def create_superuser(self, dni, nombres, apellidos, telefono, email, rol, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
@@ -41,15 +42,18 @@ class UserManager(BaseUserManager):
         except self.model.DoesNotExist:
             return None
 
-class userData(AbstractBaseUser, PermissionsMixin):
+class UserData(AbstractBaseUser, PermissionsMixin):
     dni = models.CharField(max_length=8, unique=True)
     nombres = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
     telefono = models.CharField(max_length=9, null=True)
     email = models.EmailField(max_length=100, null=True)
     rol = models.CharField(max_length=13, choices=[('Cliente', 'Cliente'), ('Tatuador', 'Tatuador'), ('Administrador', 'Administrador')], default='Cliente')
-    password = models.CharField(max_length=100, null=True)  
+    password = models.CharField(max_length=100, null=True) 
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
+    
     objects = UserManager()
 
     USERNAME_FIELD = 'dni'
