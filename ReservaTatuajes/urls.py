@@ -14,6 +14,7 @@ urlpatterns = [
     path('register/', registerView, name='register'),
     path('tatuador/',views.Tatuador, name='assag'),
     path ('', include('Tattoo.urls')),
-    path('tatuador/',views.crear_tatuador, name='assag'),
-    path('imagentatu/',views.Imagenes, name='assag'),
+    path('creartatuador/',views.crear_tatuador, name='creartatuador'),
+    path('imagentatu/',views.Imagenes, name='imagentatu'),
+    path ('vistaadmin/', views.administrar_tatuadores, name = 'vistaadmin'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
