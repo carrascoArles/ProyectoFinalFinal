@@ -1,7 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Contactarse con {{tatuador.nombre}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'Tattoo/css/estilos.css' %}">
+    <style>
+        a {
+        text-decoration: none;
+        color: #333;
+        }
+    </style>
 </head>
 <body>
     <a href="/" class="sub">Inicio</a>
@@ -13,20 +21,20 @@
     <p>Correo: {{tatuador.correo}}</p>
 
     <p>Yape:</p>
-    <img src="{{ tatuador.yape.url }}" alt="Foto de yape">
+    <img src="{{ tatuador.yape.url }}" alt="Foto de yape" style="width: 350px; height: 350px;">
     <p>Enviar correo</p>
     {% if envio_exitoso %}
         <p style="color: green;font-size: 30px;">{{ envio_exitoso }}</p>
     {% endif %}
     <p>Usuario: {{ user.nombres }}</p>
 
-    <form method="post">
+    <form method="post" >
         {% csrf_token %}
         <label for="asunto">Asunto:</label>
-        <input type="text" id="asunto" name="asunto" required><br><br>
+        <input type="text" id="asunto" name="asunto" required ><br><br>
         
         <label for="mensaje">Mensaje:</label><br>
-        <textarea id="mensaje" name="mensaje" rows="4" cols="50" required></textarea><br><br>
+        <textarea id="mensaje" name="mensaje" rows="4" cols="50" required ></textarea><br><br>
         
         <button type="submit">Enviar Correo</button>
     </form>

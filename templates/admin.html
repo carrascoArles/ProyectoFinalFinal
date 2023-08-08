@@ -1,9 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva Tatuajes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'Tattoo/css/estilos.css' %}">
+    <style>
+        .eliminar {
+        text-decoration: none;
+        color: red;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,7 +30,7 @@
         <h1>Tatuadores</h1>
         {% for tatuador in tatuadores %}
             <div class="tatuaje">
-                <h1>{{ tatuador.nombre }} <a href="{% url 'eliminar_tatuador' tatuador.dni %}">Eliminar</a></h1>
+                <h1>{{ tatuador.nombre }} <a href="{% url 'eliminar_tatuador' tatuador.dni %}" class="eliminar">Eliminar</a></h1>
 
             </div>
         {% endfor %}

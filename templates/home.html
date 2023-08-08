@@ -1,9 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva Tatuajes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'Tattoo/css/estilos.css' %}">
+
 </head>
 <body>
     <header>
@@ -41,12 +44,12 @@
                 <div class="img-container">
                     {% for tatuaje in tatuajes %}
                         {% if tatuaje.tatuador == tatuador %}
-                            <img src="{{ tatuaje.imagen }}" alt="Tatuaje de {{tatuador.nombre}}" class="tatuaje-imagen">
+                            <img src="{{ tatuaje.imagen }}" alt="Tatuaje de {{tatuador.nombre}}" class="tatuaje-imagen" style="width: 200px; height: 200px;">
                         {% endif %}
                     {% endfor %}
                 </div>
                 <p>¿Interesado?</p>
-                <a href="{% url 'pedir_cita' tatuador.dni %}"><button>Pedir cita</button></a>
+                <a href="{% url 'pedir_cita' tatuador.dni %}"><button type="button">Pedir cita</button></a>
             </div>
         {% endfor %}
     </div>
